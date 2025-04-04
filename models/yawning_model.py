@@ -6,8 +6,7 @@ import matplotlib.pyplot as plt
 # ----------------------------
 # 1. Define Data Directories
 # ----------------------------
-train_dir = 'yawning-dataset-classification'
-test_dir = 'yawning-dataset-classification'
+data_dir = 'C:/Users/Greg/PycharmProject/DrowsyDriver/datasets/mouth_dataset'
 
 # ----------------------------
 # 2. Define Parameters
@@ -16,7 +15,7 @@ IMG_SIZE = (64, 64)
 batch_size = 32
 
 # ----------------------------
-# 3. Create Data Generators (Grayscale)
+# 3. Create Data Generators (Grayscale) with Data Augmentation
 # ----------------------------
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -24,7 +23,8 @@ train_datagen = ImageDataGenerator(
     width_shift_range=0.1,
     height_shift_range=0.1,
     horizontal_flip=True,
-    validation_split=0.2  # 20% для валидации
+    brightness_range=(0.8, 1.2),  # Adjust brightness
+    validation_split=0.2  # 20% for validation
 )
 
 test_datagen = ImageDataGenerator(
@@ -32,7 +32,7 @@ test_datagen = ImageDataGenerator(
 )
 
 train_generator = train_datagen.flow_from_directory(
-    train_dir,
+    data_dir,
     target_size=IMG_SIZE,
     batch_size=batch_size,
     class_mode='binary',
@@ -41,7 +41,7 @@ train_generator = train_datagen.flow_from_directory(
 )
 
 test_generator = train_datagen.flow_from_directory(
-    train_dir,
+    data_dir,
     target_size=IMG_SIZE,
     batch_size=batch_size,
     class_mode='binary',
