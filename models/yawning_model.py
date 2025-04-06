@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # ----------------------------
 # 1. Define Data Directories
 # ----------------------------
-data_dir = 'C:/Users/Greg/PycharmProject/DrowsyDriver/datasets/mouth_dataset'
+data_dir = 'yawning-dataset-classification'
 
 # ----------------------------
 # 2. Define Parameters
@@ -23,7 +23,7 @@ train_datagen = ImageDataGenerator(
     width_shift_range=0.1,
     height_shift_range=0.1,
     horizontal_flip=True,
-    brightness_range=(0.8, 1.2),  # Adjust brightness
+    brightness_range=(0.4, 1.6),  # Adjust brightness
     validation_split=0.2  # 20% for validation
 )
 
@@ -79,7 +79,7 @@ model.summary()
 # ----------------------------
 # 5. Train the Model
 # ----------------------------
-epochs = 10
+epochs = 35
 steps_per_epoch = len(train_generator)
 validation_steps = len(test_generator)
 history = model.fit(

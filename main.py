@@ -20,9 +20,9 @@ yawn_model = load_model("trained_models/yawn_detection_model.h5")
 mp_face_mesh = mp.solutions.face_mesh
 
 # Indices of important facial landmarks
-LEFT_EYE_INDICES = [34, 245, 69, 101]
-RIGHT_EYE_INDICES = [264, 465, 299, 330]
-MOUTH_INDICES = [152, 164, 212, 432]  # Mouth
+LEFT_EYE_INDICES = [139, 245, 69, 101]
+RIGHT_EYE_INDICES = [368, 465, 299, 330]
+MOUTH_INDICES = [199, 164, 212, 432]  # Mouth
 
 # Thread-safe globals using locks
 frame_lock = threading.Lock()
@@ -162,7 +162,7 @@ while True:
     yawn_events = [t for t in yawn_events if current_time - t < 1800]
 
     # Trigger alert sounds if thresholds are exceeded
-    if eye_closed_counter > 200 and not eye_alert_triggered:
+    if eye_closed_counter > 600 and not eye_alert_triggered:
         eye_alert_sound.play()
         eye_alert_triggered = True
 
